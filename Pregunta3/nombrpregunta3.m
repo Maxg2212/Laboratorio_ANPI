@@ -8,8 +8,7 @@ function nombrpregunta3 ()
   totalPixels = 10304;
 
 
-  % Paso 1
-
+  % Calculo de la matriz S con cada una de las imagenes cara
   S = zeros(totalPixels, totalImg);
   columna_s = 1;
   for k = 1:sizeLenght
@@ -23,62 +22,59 @@ function nombrpregunta3 ()
     end
   end
 
-  % Paso 2
-  fMean = zeros(totalPixels, 1);
-  % Calcular la suma de cada fila
+  % Calculo de f promedio sumando las columnas
+  fProm = zeros(totalPixels, 1);
   for i = 1:totalPixels
-      fMean(i) = sum(S(i, :));
+      fProm(i) = sum(S(i, :));
   endfor
-  fMean = 1/totalImg * fMean;
+  fProm = (1/totalImg) * fProm;
 
-  % Paso 3 y 4
+  % Calculo de la matriz A restando la columna con fProm
   A = zeros(totalPixels, totalImg);
   for i = 1:totalImg
-      A(:,i) = S(:,i) - fMean;
+      A(:,i) = S(:,i) - fProm;
   endfor
 
-  % Paso 5
+  % Descomposicion de la matriz A por medio de svdCompact
   [U, S, V] = svdCompact(A);
 
-  % Paso 13
-
-
+  % Comparacion del X de la imagen nueva con el X_i de las imagenes buscada
   for n = 1: sizeLenght;
 
-    selectedImg = '';
+    correctImage = '';
     minValue = 0;
-    direccion=['compare/p',num2str(n),'.jpg'];
-    A1=imread(direccion);
-    B=im2double(A1);
-    f = B(:);
-    x = U'*(f-fMean);
+    compareDirectory = ['compare/p',num2str(n),'.jpg'];
+    A_compare = imread(compareDirectory);
+    B_compare =im2double(A_compare);
+    f = B_compare(:);
+    X = U'*(f - fProm);
 
     for k = 1:sizeLenght
       for m = 1:numImages
-        direccion=['training/s',num2str(k),'/',num2str(m),'.jpg'];
-        A=imread(direccion);
-        B=im2double(A);
-        f = B(:);
-        xi = U'*(f-fMean);
-        dif = ((x-xi)'*(x-xi))^(1/2);
+        trainingDirectory = ['training/s',num2str(k),'/',num2str(m),'.jpg'];
+        A_training = imread(trainingDirectory);
+        B_training=im2double(A_training);
+        f_i = B_training(:);
+        X_i = U'*(f_i - fProm);
+        epsilon = ((X - X_i)'*(X - X_i))^(1/2);
         if minValue == 0;
-          minValue = dif;
-        elseif dif < minValue;
-          minValue = dif;
-          selectedImg = direccion;
+          minValue = epsilon;
+        elseif epsilon < minValue;
+          minValue = epsilon;
+          correctImage = trainingDirectory;
         end
       end
     end
 
     subplot(1,2,1);
-    imshow(A1) %Mostrar imagen
-    title('Imagen Buscada')
+    imshow(A_compare)
+    title('Rostro nuevo')
 
-    A2 = imread(selectedImg);
+    readImage = imread(correctImage);
     subplot(1,2,2);
-    imshow(A2) %Mostrar imagen
-    title('Imagen Encontrada')
-    pause(0.2)
+    imshow(readImage)
+    title('Rostro identificado')
+    pause(1)
 
   endfor
 
