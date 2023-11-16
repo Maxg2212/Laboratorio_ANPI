@@ -23,8 +23,8 @@ function nombrpregunta1()
 
     end
     hold on
-    plot(k_values(k),tiempo1,'r','LineWidth',2) %Pseudoinversa
-    plot(k_values(k),tiempo2,'b','LineWidth',2) %Elim Guass
+    plot(k_values(k),tiempo1,'r','LineWidth',2)
+    plot(k_values(k),tiempo2,'b','LineWidth',2)
     xlabel('Parámetro K'); ylabel('Tiempo (en segundos)');
     legend('GNU Octave','Nuevo Metodo')
 end
