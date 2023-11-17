@@ -5,41 +5,45 @@ import matplotlib.pyplot as mplt
 import SVDCompact
 
 def pregunta2():
-    V = np.array([5, 6, 7, 8, 9, 10, 11, 12, 13])
+    """
+            La funcion `pregunta2` utiliza valores de un array k_values, con el cual se va probando los metodos 'SVD' y 'SVDCompact' y va midiendo el
+            tiempo que cada metodo tarda en cada valor de dicho array.
 
-    n = len(V)
+            :return: Una grafica comparativa que en el eje x son los numeros de k_values y en el eje y es el tiempo en segundos.
+            """
+    k_values = np.array([5, 6, 7, 8, 9, 10, 11, 12,13])
 
-    tiemposSVD = np.zeros(n)
-    tiemposSVDCompact = np.zeros(n)
+    num_elements = len(k_values)
 
-    tiempo1 = []
-    tiempo2 = []
+    tiemposSVD = np.zeros(num_elements)
+    tiemposSVDCompact = np.zeros(num_elements)
 
-    for i in range(0, n):
-        K = V[i]
+
+    for i in range(0, num_elements):
+        K = k_values[i]
         print(K)
+        # Generar matriz aleatoria A de tamaño 2^k x 2^(k-1)
         A = np.random.rand(2**(K), 2**(K-1))
         t1 = time.time()
         U1, S1, V1 = np.linalg.svd(A)  # Se usa operacion prefabricada
         et1 = time.time()-t1
         tiemposSVD[i] = et1
-        # tiempo1.append(et1)
+
         print(et1)
 
         t2 = time.time()
         U2, S2, V2 = SVDCompact.svdCompact(A)
         et2 = time.time()-t2
         tiemposSVDCompact[i] = et2
-        # tiempo2.append(et2)
-        print(et2)
-    # V = np.array(V)
-    # mplt.figure()
 
-    mplt.plot(V, tiemposSVD)
-    mplt.plot(V, tiemposSVDCompact)
-    # mplt.plot(V, tiempo1, 'r')
-    # mplt.plot(V, tiempo2, 'b')
-    mplt.legend()
+        print(et2)
+
+    mplt.plot(k_values, tiemposSVD, 'r')
+    mplt.plot(k_values, tiemposSVDCompact, 'g')
+    mplt.xlabel('Parametro K')
+    mplt.ylabel('Tiempo en segundos')
+    mplt.legend('GNU Octave','Nuevo Metodo')
     mplt.show()
 
+# Llamada de funcion pregunta2
 pregunta2()

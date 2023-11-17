@@ -2,6 +2,14 @@ import numpy as np
 
 
 def svdCompact(A):
+    """
+        The function `svdCompact` realiza una descomposicion compacta en valores singulares (SVD) en una matriz determinada
+        "A".
+
+        :param A: El parametro A es una matriz que se desea que realice descomposicion en valores singulares (SVD).
+        SVD  es una metodo de factorizacion de matrices que descompone una matriz en tres matrices: U, S y V
+        :return: La funcion `svdCompact` retorna tres matrices: `Ur`, `Sr` y `Vr`.
+        """
     m, n = np.shape(A)
 
     if m>n:
