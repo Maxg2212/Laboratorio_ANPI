@@ -1,5 +1,11 @@
+# Imports
 import numpy as np
 
+# ----------------------------------------------------------------------------------------------------------------------
+# Funcion svdCompact
+# Parametros: matriz A
+# Resultado: las matrices Ur, Sr y Vr.
+#
 
 def svdCompact(A):
     """

@@ -1,15 +1,19 @@
+# Imports
 import numpy as np
 import time
 import matplotlib.pyplot as mplt
 
 import SVDCompact
 
+# ----------------------------------------------------------------------------------------------------------------------
+# Funcion pregunta2
+# Parametros: no tiene.
+# Resultado: grafica comparativa entre los metodos SVD y SVDCompact, en la cual el eje x es Parametro K y en el eje y es el tiempo en segundos.
+#
 def pregunta2():
     """
             La funcion `pregunta2` utiliza valores de un array k_values, con el cual se va probando los metodos 'SVD' y 'SVDCompact' y va midiendo el
             tiempo que cada metodo tarda en cada valor de dicho array.
-
-            :return: Una grafica comparativa que en el eje x son los numeros de k_values y en el eje y es el tiempo en segundos.
             """
     k_values = np.array([5, 6, 7, 8, 9, 10, 11, 12,13])
 

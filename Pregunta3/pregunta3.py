@@ -1,16 +1,20 @@
+# Imports
 import numpy as np
 import cv2
 import os
 from Pregunta2 import SVDCompact
 import matplotlib.pyplot as mplt
 
+# ----------------------------------------------------------------------------------------------------------------------
+# Funcion pregunta3
+# Parametros: no tiene.
+# Resultado: imagenes del folder 'training' que coinciden con las del folder 'compare'.
+#
 def pregunta3():
     """
-            La function `pregunta3` realiza una descomposicion compacta en valores singulares (SVD) en una matriz determinada
-            "A".
-
-            :return: La funcion `svdCompact` retorna tres matrices: `Ur`, `Sr` y `Vr`.
-            """
+                Funcion de reconocimiento facial 'pregunta3' donde se utiliza un directorio de entrenamiento donde contiene los directorios de cada persona
+                y otro directorio donde se encuentran las imagenes que se desean comparar.
+                """
     # Datos generales
     sizeLength = 40
     numImages = 9
