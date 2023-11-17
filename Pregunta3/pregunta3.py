@@ -57,7 +57,7 @@ for n in range(1, sizeLength + 1):
     direccion = os.path.join('compare', f'p{n}.jpg')
     A_compare = cv2.imread(direccion, cv2.IMREAD_GRAYSCALE)
     B_compare = np.divide(A_compare.astype('float'), 255.0)
-    print(direccion)
+    #print(direccion)
     f = B_compare.flatten()
     #print(f)
     x = np.dot(U.conj().T,  (f - fProm.flatten()))
@@ -67,11 +67,11 @@ for n in range(1, sizeLength + 1):
         for m in range(1, numImages + 1):
             trainingDirectory = os.path.join('training', f's{k}', f'{m}.jpg')
             A_training = cv2.imread(trainingDirectory, cv2.IMREAD_GRAYSCALE)
-            print(trainingDirectory)
+            #print(trainingDirectory)
             #direccion = f'training/s{k}/{m}.jpg'
             #A_training = cv2.imread(direccion)
             B_training = np.divide(A_training.astype('float'), 255.0)
-            print("Entro al for 2 del paso 13")
+            #print("Entro al for 2 del paso 13")
             f_i = B_training.flatten()
             x_i = np.dot(U.conj().T,  (f_i - fProm.flatten()))
             dif = np.linalg.norm(x - x_i)
@@ -85,15 +85,15 @@ for n in range(1, sizeLength + 1):
 
     mplt.subplot(1,2,1)
     mplt.imshow(A_compare, cmap='gray')
-    mplt.title('Imagen Buscada')
+    mplt.title('Rostro nuevo')
 
     A2 = cv2.imread(correctImage, cv2.IMREAD_GRAYSCALE)
     mplt.subplot(1,2,2)
     mplt.imshow(A2, cmap='gray')
-    mplt.title('Imagen encontrada')
+    mplt.title('Rostro identificado')
 
     mplt.show()
-    mplt.pause(0.2)
+    mplt.pause(1)
 
 
 
