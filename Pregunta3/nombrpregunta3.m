@@ -24,26 +24,26 @@ function nombrpregunta3 ()
 
   % Calculo de f promedio sumando las columnas
   fProm = zeros(totalPixels, 1);
-  for i = 1:totalPixels
-      fProm(i) = sum(S(i, :));
+  for m = 1:totalPixels
+      fProm(m) = sum(S(m, :));
   endfor
   fProm = (1/totalImg) * fProm;
 
   % Calculo de la matriz A restando la columna con fProm
   A = zeros(totalPixels, totalImg);
-  for i = 1:totalImg
-      A(:,i) = S(:,i) - fProm;
+  for m = 1:totalImg
+      A(:,m) = S(:,m) - fProm;
   endfor
 
   % Descomposicion de la matriz A por medio de svdCompact
   [U, S, V] = svdCompact(A);
 
   % Comparacion del X de la imagen nueva con el X_i de las imagenes buscada
-  for n = 1: sizeLenght;
+  for i = 1: sizeLenght;
 
     correctImage = '';
     minValue = 0;
-    compareDirectory = ['compare/p',num2str(n),'.jpg'];
+    compareDirectory = ['compare/p',num2str(i),'.jpg'];
     A_compare = imread(compareDirectory);
     B_compare =im2double(A_compare);
     f = B_compare(:);
