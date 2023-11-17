@@ -15,7 +15,7 @@ def pregunta2():
             La funcion `pregunta2` utiliza valores de un array k_values, con el cual se va probando los metodos 'SVD' y 'SVDCompact' y va midiendo el
             tiempo que cada metodo tarda en cada valor de dicho array.
             """
-    k_values = np.array([5, 6, 7, 8, 9, 10, 11, 12,13])
+    k_values = np.array([5, 6, 7, 8, 9, 10, 11, 12])
 
     num_elements = len(k_values)
 
@@ -33,20 +33,20 @@ def pregunta2():
         et1 = time.time()-t1
         tiemposSVD[i] = et1
 
-        print(et1)
+        print('Tiempo en SVD: ' + str(et1))
 
         t2 = time.time()
         U2, S2, V2 = SVDCompact.svdCompact(A)
         et2 = time.time()-t2
         tiemposSVDCompact[i] = et2
 
-        print(et2)
+        print('Tiempo en SVDCompact: ' + str(et2))
 
     mplt.plot(k_values, tiemposSVD, 'r')
     mplt.plot(k_values, tiemposSVDCompact, 'g')
     mplt.xlabel('Parametro K')
     mplt.ylabel('Tiempo en segundos')
-    mplt.legend('GNU Octave','Nuevo Metodo')
+    mplt.legend(['GNU Octave','Nuevo Metodo'])
     mplt.show()
 
 # Llamada de funcion pregunta2
