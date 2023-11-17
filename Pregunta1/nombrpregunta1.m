@@ -1,7 +1,6 @@
-% Pregunta 1 - Archivo pregunta1.m
-
-% Definir los valores de k
-
+%
+% Funcion que genera una matriz aleatoria A de tamaño 2^k x 2^(k-1)
+%
 function nombrpregunta1()
     clc; clear;
     k_values = [5, 6, 7, 8, 9, 10, 11, 12];
@@ -12,7 +11,6 @@ function nombrpregunta1()
 
     k = 1:1:num_elements;
     for m = k
-        % Generar matriz aleatoria A de tamaño 2^k x 2^(k-1)
         A = rand(2^k_values(m), 2^(k_values(m)-1));
 
         tic; [U ,S , V ]= svd(A); t1=toc;
@@ -29,6 +27,17 @@ function nombrpregunta1()
     legend('GNU Octave','Nuevo Metodo')
 end
 
+% La funcion svdCompact realiza una descomposición compacta de valores singulares (SVD) de una matriz A de una manera mas optimizada.
+% La SVD es una factorización matricial que descompone A en U Sigma V^T,
+% donde U y V son matrices ortogonales y Sigma es una matriz diagonal con los valores singulares.
+%
+% Entradas:
+%   A: La matriz que se va a descomponer.
+%
+% Salidas:
+%   Ur: La matriz U reducida, que contiene únicamente las columnas correspondientes a los valores singulares no nulos.
+%   Sr: La matriz diagonal reducida Sigma, que contiene únicamente los valores singulares no nulos.
+%   Vr: La matriz V reducida, que contiene únicamente las columnas correspondientes a los valores singulares no nulos.
 function [Ur, Sr, Vr] = svdCompact (A)
 
     [m,n] = size(A);

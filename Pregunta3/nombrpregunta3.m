@@ -1,3 +1,7 @@
+%
+% Funcion de reconocimiento facial donde se utiliza un directorio de entrenamiento donde contiene los directorios de cada persona
+% y otro directorio donde se encuentran las imagenes que se desean comparar.
+%
 function nombrpregunta3 ()
   clc; clear;
 
@@ -66,6 +70,7 @@ function nombrpregunta3 ()
       end
     end
 
+    % Graficacion de las imagenes
     subplot(1,2,1);
     imshow(A_compare)
     title('Rostro nuevo')

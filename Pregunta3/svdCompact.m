@@ -1,3 +1,15 @@
+% La funcion svdCompact realiza una descomposición compacta de valores singulares (SVD) de una matriz A de una manera mas optimizada.
+% La SVD es una factorización matricial que descompone A en U Sigma V^T,
+% donde U y V son matrices ortogonales y Sigma es una matriz diagonal con los valores singulares.
+%
+% Entradas:
+%   A: La matriz que se va a descomponer.
+%
+% Salidas:
+%   Ur: La matriz U reducida, que contiene únicamente las columnas correspondientes a los valores singulares no nulos.
+%   Sr: La matriz diagonal reducida Sigma, que contiene únicamente los valores singulares no nulos.
+%   Vr: La matriz V reducida, que contiene únicamente las columnas correspondientes a los valores singulares no nulos.
+%
 function [Ur, Sr, Vr] = svdCompact (A)
     [m,n] = size(A);
     if m > n
